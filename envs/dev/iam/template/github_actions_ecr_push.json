@@ -5,32 +5,20 @@
       "Sid": "AllowAuthorizationToken",
       "Effect": "Allow",
       "Action": [
-        "ecr:GetAuthorizationToken",
         "ecr-public:GetAuthorizationToken"
       ],
       "Resource": "*"
     },
     {
-      "Sid": "AllowPushToRepositories",
+      "Sid": "AllowSTSServiceBearerToken",
       "Effect": "Allow",
-      "Action": [
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:BatchGetImage",
-        "ecr:CompleteLayerUpload",
-        "ecr:DescribeImages",
-        "ecr:DescribeRepositories",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:InitiateLayerUpload",
-        "ecr:ListImages",
-        "ecr:PutImage"
-      ],
-      "Resource": "arn:${partition}:ecr:${region}:${account_id}:repository/*"
+      "Action": "sts:GetServiceBearerToken",
+      "Resource": "*"
     },
     {
       "Sid": "AllowPushToPublicRepositories",
       "Effect": "Allow",
       "Action": [
-        "ecr:UploadLayerPart",
         "ecr-public:BatchCheckLayerAvailability",
         "ecr-public:BatchGetImage",
         "ecr-public:CompleteLayerUpload",
