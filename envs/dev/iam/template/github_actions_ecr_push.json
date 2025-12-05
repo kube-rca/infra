@@ -5,7 +5,8 @@
       "Sid": "AllowAuthorizationToken",
       "Effect": "Allow",
       "Action": [
-        "ecr:GetAuthorizationToken"
+        "ecr:GetAuthorizationToken",
+        "ecr-public:GetAuthorizationToken"
       ],
       "Resource": "*"
     },
@@ -21,10 +22,27 @@
         "ecr:GetDownloadUrlForLayer",
         "ecr:InitiateLayerUpload",
         "ecr:ListImages",
-        "ecr:PutImage",
-        "ecr:UploadLayerPart"
+        "ecr:PutImage"
       ],
       "Resource": "arn:${partition}:ecr:${region}:${account_id}:repository/*"
+    },
+    {
+      "Sid": "AllowPushToPublicRepositories",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:UploadLayerPart",
+        "ecr-public:BatchCheckLayerAvailability",
+        "ecr-public:BatchGetImage",
+        "ecr-public:CompleteLayerUpload",
+        "ecr-public:DescribeImages",
+        "ecr-public:DescribeRepositories",
+        "ecr-public:GetDownloadUrlForLayer",
+        "ecr-public:InitiateLayerUpload",
+        "ecr-public:ListImages",
+        "ecr-public:PutImage",
+        "ecr-public:UploadLayerPart"
+      ],
+      "Resource": "*"
     }
   ]
 }
